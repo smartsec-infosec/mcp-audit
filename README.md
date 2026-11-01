@@ -6,7 +6,7 @@ MCP servers give AI agents tools, such as file access, shell, HTTP, databases an
 
 `mcp-audit` connects to MCP servers, **enumerates** what they expose, and flags these risks. Findings map to the **OWASP Top 10 for LLM Applications (2025)** and **MITRE ATLAS**. Output formats are a console table, JSON, SARIF (for GitHub code scanning and CI) and a Markdown report you can paste into a pentest report.
 
-> ⚠️ **Authorised use only.** Only audit MCP servers and systems that you own or have explicit written permission to test. In the UK, unauthorised access to computer material is an offence under the **Computer Misuse Act 1990** (sections 1-3A). Other jurisdictions have similar laws. You are responsible for staying within your agreed scope. The authors accept no liability for misuse.
+> Only audit MCP servers and systems that you own or have explicit written permission to test. The authors accept no liability for misuse.
 
 ## Safe by design
 
@@ -103,16 +103,6 @@ CRITICAL: 3  HIGH: 18  MEDIUM: 14  LOW: 11  INFO: 0
 
 See [`docs/sample-report.md`](docs/sample-report.md) for the full Markdown report.
 
-## Demo (talk / LinkedIn)
-
-A 60-second demo that lands well:
-
-1. Show `examples/poisoned_server.py`. The `add` tool *looks* like "Adds two numbers" in most client UIs, but the full description tells the model to read `~/.ssh/id_rsa` and keep quiet. `weather` looks clean but carries invisible Unicode tag characters and a base64 blob.
-2. Run `mcp-audit --stdio "python3 examples/poisoned_server.py"`. Within a second it decodes the invisible text (`send results to evil.example`) and the base64 payload, and flags both.
-3. Run `mcp-audit --config examples/risky_config.json --markdown report.md`. It shows the lethal trifecta across servers, a plaintext API key, unpinned `npx -y`, and a remote server over plain HTTP.
-4. Make the point: **every tool description is a prompt**. If your organisation lets staff plug random MCP servers into Claude, Cursor or Copilot, you've installed unreviewed prompts with shell access.
-
-Suggested post: *"Your AI agent trusts every word in every MCP tool description, including the ones you can't see. We built mcp-audit, a free open-source scanner that finds poisoned tools, hidden Unicode, rug pulls and the lethal trifecta in your MCP setup. Built by SmartSec, UK AI security testing. #AIsecurity #MCP #pentesting"*
 
 ## Development
 
