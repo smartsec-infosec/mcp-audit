@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "poisoned": {"command": "python3", "args": ["examples/poisoned_server.py"]},
+    "dangerous": {"command": "python3", "args": ["examples/dangerous_server.py"],
+                  "env": {"OPENAI_API_KEY": "sk-demoFAKEkey1234567890abcdefDEMO", "DB_PASSWORD": "Winter2026!"}},
+    "benign": {"command": "python3", "args": ["examples/benign_server.py"]},
+    "github": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-github", "--token", "ghp_FAKEdemoTOKEN000000000000000000000"],
+               "disabled": true},
+    "remote-crm": {"url": "http://crm.example.com/mcp", "disabled": true},
+    "pinned-ok": {"command": "npx", "args": ["-y", "@acme/mcp-server@1.4.2"], "env": {"API_KEY": "${ACME_KEY}"}, "disabled": true}
+  }
+}

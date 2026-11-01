@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-audit"
+version = "0.1.0"
+description = "Heuristic security auditor for Model Context Protocol (MCP) servers and client configs, by SmartSec"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "SmartSec", email = "hello@smartsec.co.uk"}]
+keywords = ["mcp", "security", "llm", "ai-security", "pentest", "prompt-injection"]
+dependencies = ["rich>=13"]
+classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Topic :: Security"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://smartsec.co.uk"
+
+[project.scripts]
+mcp-audit = "mcp_audit.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
